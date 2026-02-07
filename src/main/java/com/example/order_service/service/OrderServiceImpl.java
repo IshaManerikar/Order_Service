@@ -80,7 +80,7 @@ public class OrderServiceImpl implements OrderService{
 	
 	@Override
 	public OrderResponseDTO updateOrder(Long id, OrderRequestDTO dto) {
-	    Order existingOrder = orderRepository.findById(id)
+	    Order existingOrder = orderRepository.findByIdAndDeletedFalse(id)
 	            .orElseThrow(() -> new OrderNotFoundException("Order not found with id " + id));
 
 	    existingOrder.setUserId(dto.getUserId());
@@ -162,7 +162,7 @@ public class OrderServiceImpl implements OrderService{
 	@Override
 	public OrderResponseDTO restoreOrder(Long id) {
 	    Order order = orderRepository.findByIdAndDeletedTrue(id)
-	            .orElseThrow(() -> new OrderNotFoundException("Order not found with id " + id));
+	            .orElseThrow(() -> new OrderNotFoundException(" Deleted order not found with id " + id));
 
 	    order.setDeleted(false);  // Soft delete
 	    orderRepository.save(order);
