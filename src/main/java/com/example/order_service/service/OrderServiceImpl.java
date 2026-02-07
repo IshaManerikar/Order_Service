@@ -6,10 +6,12 @@ import java.util.stream.Collectors;
 
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.stereotype.Service;
 
 import com.example.order_service.exception.InvalidOrderStatusException;
 import com.example.order_service.exception.OrderNotFoundException;
+import com.example.order_service.dto.ApiResponse;
 import com.example.order_service.dto.OrderRequestDTO;
 import com.example.order_service.dto.OrderResponseDTO;
 import com.example.order_service.dto.OrderStatusHistoryResponseDTO;
@@ -100,22 +102,24 @@ public class OrderServiceImpl implements OrderService{
 	            .orElseThrow(() ->
 	                    new OrderNotFoundException("Order not found with id " + id));
 
-	    UserResponseDTO user = webClient
-	            .get()
-	            .uri("http://localhost:9091/users/{id}", order.getUserId())
-	            .retrieve()
-	            .bodyToMono(UserResponseDTO.class)
-	            .block();
+	    ApiResponse<UserResponseDTO> userResponse =
+	            webClient.get()
+	                    .uri("http://localhost:9091/users/{id}", order.getUserId())
+	                    .retrieve()
+	                    .bodyToMono(new ParameterizedTypeReference<ApiResponse<UserResponseDTO>>() {})
+	                    .block();
 
+	    UserResponseDTO user = userResponse.getData();
+	    
 	    OrderWithUserResponseDTO response = new OrderWithUserResponseDTO();
 	    response.setOrderId(order.getId());
 	    response.setProductName(order.getProductName());
 	    response.setQuantity(order.getQuantity());
 	    response.setPrice(order.getPrice());
 	    response.setUser(user);
-	    
 
 	    return response;
+
 	}
 
 	@Override
