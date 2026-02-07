@@ -199,5 +199,22 @@ public class OrderController {
         		cancelledOrder
         ));
     }
+    
+    //get orders with respect to user
+    @GetMapping("/user/{userId}")
+    public ResponseEntity<ApiResponse<Page<OrderResponseDTO>>> getOrdersByUser(
+            @PathVariable Long userId,
+            @RequestParam(defaultValue = "0") int page,
+            @RequestParam(defaultValue = "5") int size) {
+
+        Page<OrderResponseDTO> orders =
+                orderService.getOrdersByUser(userId, page, size);
+
+        ApiResponse<Page<OrderResponseDTO>> response =
+                new ApiResponse<>("Orders fetched successfully", 200, orders);
+
+        return ResponseEntity.ok(response);
+    }
+
 
 }

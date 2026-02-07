@@ -28,6 +28,7 @@ import com.example.user_service.exception.UserNotFoundException;
 import org.springframework.web.reactive.function.client.WebClient;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 
 
 import jakarta.transaction.*;
@@ -239,6 +240,17 @@ public class OrderServiceImpl implements OrderService{
 	    dto.setUpdatedAt(order.getUpdatedAt());
 	    return dto;
 	}
+	
+	
+	public Page<OrderResponseDTO> getOrdersByUser(Long userId, int page, int size) {
+
+	    Pageable pageable = PageRequest.of(page, size);
+
+	    return orderRepository
+	            .findByUserIdAndDeletedFalse(userId, pageable)
+	            .map(this::mapToResponse);
+	}
+
 
 	
 			
