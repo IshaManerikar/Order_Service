@@ -171,7 +171,7 @@ public class OrderController {
     
     
  // Full update
-    @PutMapping("/{id}")  //todo not saving in db
+    @PutMapping("/{id}")  
     public ResponseEntity<ApiResponse<OrderResponseDTO>> updateOrder(
             @PathVariable Long id,
             @RequestBody OrderRequestDTO dto) {
