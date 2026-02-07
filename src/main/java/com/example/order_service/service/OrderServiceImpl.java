@@ -205,6 +205,21 @@ public class OrderServiceImpl implements OrderService{
 	}
 
 
+	@Override 
+	public OrderResponseDTO cancelOrder(Long orderId) {
+
+	    Order order = orderRepository.findByIdAndDeletedFalse(orderId)
+	            .orElseThrow(() ->
+	                new OrderNotFoundException("Order not found with id " + orderId)
+	            );
+
+	    order.changeStatus(OrderStatus.CANCELLED);
+
+	    Order saved = orderRepository.save(order);
+
+	    return mapToResponse(saved);
+	}
+
     
 
     

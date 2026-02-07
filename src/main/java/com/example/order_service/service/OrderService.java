@@ -25,5 +25,6 @@ public interface OrderService {
     OrderResponseDTO restoreOrder(Long id);
 
     void deleteOrder(Long id);
+	OrderResponseDTO cancelOrder(Long orderId);
 
 }

@@ -168,6 +168,8 @@ public class OrderController {
 
         return ResponseEntity.ok(response);
     }
+    
+    
  // Full update
     @PutMapping("/{id}")
     public ResponseEntity<ApiResponse<OrderResponseDTO>> updateOrder(
@@ -183,5 +185,19 @@ public class OrderController {
         ));
     }
 
+    
+    //cancel order
+    @PutMapping("/{id}/cancel")
+    public ResponseEntity<ApiResponse<OrderResponseDTO>>cancelOrder(
+    		@PathVariable Long id) {
+    	
+    	OrderResponseDTO cancelledOrder = orderService.cancelOrder(id);
+        return ResponseEntity.ok(new ApiResponse<>
+        (
+        		"Order Cancelled",
+        		200, 
+        		cancelledOrder
+        ));
+    }
 
 }
