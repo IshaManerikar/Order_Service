@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 import org.springframework.web.reactive.function.client.WebClientResponseException;
 
-import com.example.user_service.dto.ApiResponse;
+import com.example.order_service.dto.ApiResponse;
 
 @RestControllerAdvice
 public class GlobalExceptionHandler {

@@ -1,15 +1,14 @@
 package com.example.order_service.service;
+
 import java.time.Duration;
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.stream.Collectors;
 
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.stereotype.Service;
 
-import com.example.order_service.exception.InvalidOrderStatusException;
 import com.example.order_service.exception.OrderNotFoundException;
 import com.example.order_service.dto.ApiResponse;
 import com.example.order_service.dto.OrderRequestDTO;
@@ -18,18 +17,15 @@ import com.example.order_service.dto.OrderStatusHistoryResponseDTO;
 import com.example.order_service.dto.OrderWithUserResponseDTO;
 import com.example.order_service.model.Order;
 import com.example.order_service.model.OrderStatus;
-import com.example.order_service.model.OrderStatusHistory;
+
 import com.example.order_service.repository.OrderRepository;
 import com.example.order_service.repository.OrderStatusHistoryRepository;
 import com.example.user_service.dto.UserResponseDTO;
-import com.example.user_service.exception.UserNotFoundException;
-
 
 import org.springframework.web.reactive.function.client.WebClient;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
-
 
 import jakarta.transaction.*;
 

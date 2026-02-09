@@ -1,5 +1,5 @@
 package com.example.order_service.controller;
-//import com.example.order_service.dto.ApiResponse;
+
 import org.springframework.data.domain.Page;
 
 import org.springframework.web.bind.annotation.*;
@@ -17,8 +17,6 @@ import com.example.order_service.dto.OrderWithUserResponseDTO;
 import com.example.order_service.dto.OrderStatusHistoryResponseDTO;
 import com.example.order_service.model.OrderStatus;
 import com.example.order_service.service.OrderService;
-import com.example.user_service.dto.UserRequestDTO;
-import com.example.user_service.dto.UserResponseDTO;
 
 import jakarta.validation.Valid;
 

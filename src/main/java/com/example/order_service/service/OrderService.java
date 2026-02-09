@@ -2,16 +2,16 @@ package com.example.order_service.service;
 
 import java.util.List;
 import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
+
 
 import com.example.order_service.dto.OrderRequestDTO;
 import com.example.order_service.dto.OrderResponseDTO;
 import com.example.order_service.dto.OrderStatusHistoryResponseDTO;
 //import com.sun.tools.javac.util.List;
 import com.example.order_service.dto.OrderWithUserResponseDTO;
-import com.example.order_service.model.Order;
+
 import com.example.order_service.model.OrderStatus;
-import com.example.order_service.model.OrderStatusHistory;
+
 
 public interface OrderService {
 
