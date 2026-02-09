@@ -215,6 +215,22 @@ public class OrderController {
 
         return ResponseEntity.ok(response);
     }
+    
+    //get orders by status
+    @GetMapping("/status/{status}")
+    public ResponseEntity<ApiResponse<Page<OrderResponseDTO>>> getOrderByStatus(
+    		@PathVariable OrderStatus status,
+            @RequestParam(defaultValue = "0") int page,
+            @RequestParam(defaultValue = "5") int size) {
+    	
+    	Page<OrderResponseDTO> orders =
+                orderService.getOrdersByStatus(status, page, size);
 
+        ApiResponse<Page<OrderResponseDTO>> response =
+                new ApiResponse<>("Orders fetched successfully", 200, orders);
+
+        return ResponseEntity.ok(response);
+	}
 
 }
+

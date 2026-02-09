@@ -9,6 +9,10 @@ import java.util.Optional;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import com.example.order_service.model.Order;
+import com.example.order_service.model.OrderStatus;
+import com.example.user_service.dto.UserResponseDTO;
+
+import reactor.core.publisher.Mono;
 
 public interface OrderRepository extends JpaRepository<Order, Long> {
 
@@ -20,5 +24,8 @@ public interface OrderRepository extends JpaRepository<Order, Long> {
 
 	Optional<Order> findByIdAndDeletedTrue(Long id);
 	Page<Order> findByUserIdAndDeletedFalse(Long userId, Pageable pageable);
+
+	Page<Order> findByStatusAndDeletedFalse(OrderStatus status, Pageable pageable);
+
 
 }

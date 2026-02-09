@@ -250,8 +250,13 @@ public class OrderServiceImpl implements OrderService{
 	            .findByUserIdAndDeletedFalse(userId, pageable)
 	            .map(this::mapToResponse);
 	}
-
-
 	
-			
+	public Page<OrderResponseDTO> getOrdersByStatus(OrderStatus status, int page, int size){
+		Pageable pageable = PageRequest.of(page,  size);
+		
+		return orderRepository
+				.findByStatusAndDeletedFalse(status, pageable)
+				.map(this::mapToResponse);
+		
+	}			
 }
